@@ -25,6 +25,8 @@ class BoardButton @JvmOverloads constructor(
 
     companion object {
         val SIZE = (ScreenManager.getBoardSize() / 3).roundToInt()
+        private val TEXT_SIZE_X = 40f
+        private val TEXT_SIZE_O = 48f
     }
 
     private var rectF: RectF = RectF().apply {
@@ -52,10 +54,10 @@ class BoardButton @JvmOverloads constructor(
             if (value == BoardButtonType.X) {
 //                text = "✖"
                 text = "\u2715"
-                setTextSize(TypedValue.COMPLEX_UNIT_DIP, 42f)
+                setTextSize(TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_X)
                 setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color_x))
             } else if (value == BoardButtonType.O) {
-                setTextSize(TypedValue.COMPLEX_UNIT_DIP, 48f)
+                setTextSize(TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_O)
                 setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color_o))
 //                text = "🞅"
                 text = "\u25EF"
@@ -73,7 +75,7 @@ class BoardButton @JvmOverloads constructor(
         this.gravity = Gravity.CENTER
 //        this.setPadding(2.dp, 2.dp, 2.dp, 2.dp)
 //        this.text = "X"
-        setTextSize(TypedValue.COMPLEX_UNIT_DIP, 42f)
+        setTextSize(TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_X)
         setBackgroundColor(ContextCompat.getColor(context, R.color.transparent_color))
         setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color_o))
 
