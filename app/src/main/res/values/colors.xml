@@ -8,10 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="screen_color">#FF1D2327</color>
-    <color name="board_color">#FF1D2327</color>
-    <color name="board_button_color">#FF0B1317</color>
-    <color name="board_button_color_2">#00ACC1</color>
+    <color name="screen_color">#FF222222</color>
+    <color name="board_color">@color/screen_color</color>
+    <color name="board_button_color">#FF2D2D2D</color>
+    <color name="board_button_color_2">#FF2D2D2D</color>
     <color name="transparent_color">#00FFFFFF</color>
-    <color name="board_button_text_color">#FFB300</color>
+    <color name="board_button_text_color_x">#FF43A7C1</color>
+    <color name="board_button_text_color_o">#FFD65236</color>
 </resources>
