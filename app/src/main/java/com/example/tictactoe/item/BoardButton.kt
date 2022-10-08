@@ -19,9 +19,16 @@ class BoardButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : AppCompatTextView(context, attrs) {
 
-    private var rectF: RectF = RectF()
+    private var rectF: RectF = RectF().apply {
+        left = 2f.dp
+        top = 2f.dp
+        right = SIZE - 2f.dp
+        bottom = SIZE - 2f.dp
+    }
 
-    private var _paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private var _paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = ContextCompat.getColor(context, R.color.board_button_color)
+    }
 
     companion object {
 
@@ -36,20 +43,12 @@ class BoardButton @JvmOverloads constructor(
         this.text = "X"
         setTextSize(TypedValue.COMPLEX_UNIT_DIP, 21f)
         setBackgroundColor(ContextCompat.getColor(context, R.color.transparent_color))
-
-
-        _paint.color = ContextCompat.getColor(context,  R.color.board_button_color)
-
-        rectF.left = 2f.dp
-        rectF.top = 2f.dp
-        rectF.right = SIZE - 2f.dp
-        rectF.bottom = SIZE - 2f.dp
+        setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color))
     }
 
     override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
         canvas?.drawRoundRect(rectF, 6f.dp, 6f.dp, _paint)
-
+        super.onDraw(canvas)
     }
 
 //    override fun dispatchDraw(canvas: Canvas?) {

@@ -11,4 +11,5 @@
     <color name="board_color">#D81B60</color>
     <color name="board_button_color">#00897B</color>
     <color name="transparent_color">#00FFFFFF</color>
+    <color name="board_button_text_color">#FFB300</color>
 </resources>
