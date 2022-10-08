@@ -48,16 +48,21 @@ class BoardButton @JvmOverloads constructor(
     var type: BoardButtonType = BoardButtonType.O
         set(value) {
             field = value
-            val font = ResourcesCompat.getFont(context, R.font.tau_bhon)
-            typeface = font
-
+                typeface = Typeface.DEFAULT_BOLD
             if (value == BoardButtonType.X) {
-                text = "✖"
+//                text = "✖"
+                text = "\u2715"
+                setTextSize(TypedValue.COMPLEX_UNIT_DIP, 42f)
                 setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color_x))
             } else if (value == BoardButtonType.O) {
+                setTextSize(TypedValue.COMPLEX_UNIT_DIP, 48f)
                 setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color_o))
-                text = "🞅"
+//                text = "🞅"
+                text = "\u25EF"
 //                text = "\uD83D\uDF85"
+//                text = "\u25EF"
+//                text = "\u2B55"
+//                typeface = Typeface.DEFAULT_BOLD
 
             }
         }
@@ -68,7 +73,7 @@ class BoardButton @JvmOverloads constructor(
         this.gravity = Gravity.CENTER
 //        this.setPadding(2.dp, 2.dp, 2.dp, 2.dp)
 //        this.text = "X"
-        setTextSize(TypedValue.COMPLEX_UNIT_DIP, 32f)
+        setTextSize(TypedValue.COMPLEX_UNIT_DIP, 42f)
         setBackgroundColor(ContextCompat.getColor(context, R.color.transparent_color))
         setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color_o))
 
