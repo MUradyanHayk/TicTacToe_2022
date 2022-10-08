@@ -9,6 +9,7 @@ import com.example.tictactoe.R
 import com.example.tictactoe.ui.GameBoardView
 import com.example.tictactoe.utils.ScreenManager
 import com.example.tictactoe.utils.dp
+import kotlin.math.roundToInt
 
 class PlayFragmentLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -16,7 +17,7 @@ class PlayFragmentLayout @JvmOverloads constructor(
     var gameBoardView: GameBoardView? = null
 
     init {
-        setBackgroundColor(ContextCompat.getColor(context, R.color.purple_200))
+        setBackgroundColor(ContextCompat.getColor(context, R.color.screen_color))
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         layoutParams = params
         createGameBoardView()
@@ -25,8 +26,9 @@ class PlayFragmentLayout @JvmOverloads constructor(
     private fun createGameBoardView() {
         gameBoardView = GameBoardView(context)
         gameBoardView?.setBackgroundColor(ContextCompat.getColor(context, R.color.board_color))
-        val params = LayoutParams(ScreenManager.getScreenWidth(), ScreenManager.getScreenWidth())
-        params.gravity = Gravity.CENTER
+        val params = LayoutParams(ScreenManager.getBoardSize().roundToInt(), ScreenManager.getBoardSize().roundToInt())
+        params.gravity = Gravity.CENTER or Gravity.BOTTOM
+        params.bottomMargin = 32.dp
 //        params.setMargins(16.dp, 16.dp, 16.dp, 16.dp)
         gameBoardView?.layoutParams = params
         addView(gameBoardView)

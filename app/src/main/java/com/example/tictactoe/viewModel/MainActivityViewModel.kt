@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
     val liveData = MutableLiveData<String>()
     init {
-        startTimer()
+//        startTimer()
     }
     fun startTimer() {
         object : CountDownTimer(20000, 1000) {

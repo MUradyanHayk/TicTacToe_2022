@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.example.tictactoe.R
 import com.example.tictactoe.utils.ScreenManager
 import com.example.tictactoe.utils.dp
+import kotlin.math.roundToInt
 
 
 class BoardButton @JvmOverloads constructor(
@@ -26,13 +27,20 @@ class BoardButton @JvmOverloads constructor(
         bottom = SIZE - 2f.dp
     }
 
-    private var _paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, R.color.board_button_color)
-    }
+    private var _paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    var bgColor: Int = ContextCompat.getColor(context, R.color.board_button_color)
+        get() {
+            return _paint.color
+        }
+        set(value) {
+            field = value
+            _paint.color = field
+            invalidate()
+        }
 
     companion object {
 
-        val SIZE = ScreenManager.getScreenWidth() / 3
+        val SIZE = (ScreenManager.getBoardSize() / 3).roundToInt()
     }
 
     init {
@@ -40,10 +48,12 @@ class BoardButton @JvmOverloads constructor(
         this.layoutParams = params
         this.gravity = Gravity.CENTER
 //        this.setPadding(2.dp, 2.dp, 2.dp, 2.dp)
-        this.text = "X"
+//        this.text = "X"
         setTextSize(TypedValue.COMPLEX_UNIT_DIP, 21f)
         setBackgroundColor(ContextCompat.getColor(context, R.color.transparent_color))
         setTextColor(ContextCompat.getColor(context, R.color.board_button_text_color))
+
+        _paint.color = bgColor
     }
 
     override fun onDraw(canvas: Canvas?) {

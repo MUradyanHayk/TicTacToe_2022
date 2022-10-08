@@ -13,6 +13,7 @@ class GameBoardView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs) {
 
     var backgroundArray = Array(3) { Array(3) { createBoardButton() } }
+    var foregroundArray = Array(3) { mutableListOf<BoardButton>() }
 
     init {
         setBackgroundColor(ContextCompat.getColor(context, R.color.teal_700))
@@ -32,12 +33,24 @@ class GameBoardView @JvmOverloads constructor(
     private fun initBackgroundArrayPositions() {
         for (i in backgroundArray.indices) {
             for (j in backgroundArray[i].indices) {
-                val btn =  backgroundArray[i][j]
+                val btn = backgroundArray[i][j]
+                btn.setOnClickListener{
+                    btn.isEnabled = false
+                    createBoardButton().apply {
+                        val params = layoutParams as FrameLayout.LayoutParams
+                        setParamsByPosition(params, i, j)
+                        bgColor = ContextCompat.getColor(context, R.color.board_button_color_2)
+                    }
+                }
                 val params = btn.layoutParams as FrameLayout.LayoutParams
-                params.topMargin = i * BoardButton.SIZE
-                params.leftMargin = j * BoardButton.SIZE
+                setParamsByPosition(params, i, j)
             }
 
         }
+    }
+
+    fun setParamsByPosition(params: LayoutParams, i:Int, j:Int) {
+        params.topMargin = i * BoardButton.SIZE
+        params.leftMargin = j * BoardButton.SIZE
     }
 }
