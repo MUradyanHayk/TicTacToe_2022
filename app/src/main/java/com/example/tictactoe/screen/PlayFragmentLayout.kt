@@ -46,4 +46,8 @@ class PlayFragmentLayout @JvmOverloads constructor(
         gameBoardView?.layoutParams = params
         addView(gameBoardView)
     }
+
+    fun refresh() {
+        gameBoardView?.refresh()
+    }
 }
