@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -57,6 +58,10 @@ class PlayFragment : Fragment() {
                         }
                         isClicked = !isClicked
                         scaleAnimate()
+                        if (win()) {
+                            setEnabledButton(false)
+                            Toast.makeText(context, "win", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
                 val params = btn.layoutParams as FrameLayout.LayoutParams
@@ -66,11 +71,70 @@ class PlayFragment : Fragment() {
         }
     }
 
-    fun win() {
-        val arr = screen?.gameBoardView?.foregroundArray
+    fun win(): Boolean {
+        val arr = screen?.gameBoardView?.foregroundArray!!
+// ===============================================================
+        var isWin = false
+        for (i in arr.indices) {
+            val type = arr[i][0]?.type
+            for (j in arr.indices) {
+                isWin = true
+                if (arr[i][j]?.type != type || arr[i][j] == null) {
+                    isWin = false
+                    break
+                }
+            }
+            if (isWin) {
+                return true
+            }
+        }
 
-//        if () {
-//        }
+        // ===============================================================
+        for (i in arr.indices) {
+            val type = arr[0][i]?.type
+            for (j in arr.indices) {
+                isWin = true
+                if (arr[j][i]?.type != type || arr[j][i] == null) {
+                    isWin = false
+                    break
+                }
+            }
+            if (isWin) {
+                return true
+            }
+        }
+
+        // ===============================================================
+        for (i in arr.indices) {
+            val type = arr[0][0]?.type
+            isWin = true
+            if (arr[i][i]?.type != type || arr[i][i] == null) {
+                isWin = false
+                break
+            }
+        }
+
+        if (isWin) {
+            return true
+        }
+
+        // ===============================================================
+        for (i in arr.indices) {
+            val type = arr[0][arr.size - 1]?.type
+            isWin = true
+            if (arr[i][arr.size - 1 - i]?.type != type || arr[i][arr.size - 1 - i] == null) {
+                isWin = false
+                break
+            }
+        }
+
+        if (isWin) {
+            return true
+        }
+        // ===============================================================
+
+
+        return isWin
     }
 
     fun refresh() {
@@ -84,11 +148,19 @@ class PlayFragment : Fragment() {
             }
         }
 
-        for (i in bgArr.indices) {
-            for (j in bgArr.indices) {
-                bgArr[i][j].isEnabled = true
-            }
-        }
+        setEnabledButton(true)
+
         screen?.requestLayout()
     }
+
+    fun setEnabledButton(isEnabled: Boolean) {
+        val bgArr = screen?.gameBoardView?.backgroundArray!!
+        for (i in bgArr.indices) {
+            for (j in bgArr.indices) {
+                bgArr[i][j]?.isEnabled = isEnabled
+            }
+        }
+    }
+
+
 }
