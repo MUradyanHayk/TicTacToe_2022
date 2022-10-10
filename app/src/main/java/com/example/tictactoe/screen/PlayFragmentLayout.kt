@@ -19,7 +19,6 @@ class PlayFragmentLayout @JvmOverloads constructor(
 ) : FrameLayout(context, attrs) {
     var gameBoardView: GameBoardView? = null
     var refreshImageView: ImageView? = null
-    var isClicked = false
 
     init {
         setBackgroundColor(ContextCompat.getColor(context, R.color.screen_color))
@@ -27,8 +26,6 @@ class PlayFragmentLayout @JvmOverloads constructor(
         layoutParams = params
         createGameBoardView()
         createRefreshImageView()
-
-        initBackgroundArrayPositions()
     }
 
     private fun createRefreshImageView() {
@@ -50,49 +47,5 @@ class PlayFragmentLayout @JvmOverloads constructor(
 //        params.setMargins(16.dp, 16.dp, 16.dp, 16.dp)
         gameBoardView?.layoutParams = params
         addView(gameBoardView)
-    }
-
-    private fun initBackgroundArrayPositions() {
-        for (i in gameBoardView?.backgroundArray!!.indices) {
-            for (j in gameBoardView?.backgroundArray!![i].indices) {
-                val btn = gameBoardView?.backgroundArray!![i][j]
-                btn.setOnClickListener {
-                    btn.isEnabled = false
-                    gameBoardView?.createBoardButtonByAnimation()?.apply {
-                        gameBoardView?.foregroundArray?.get(i)?.add(this)
-                        val params = layoutParams as FrameLayout.LayoutParams
-                        gameBoardView?.setParamsByPosition(params, i, j)
-                        bgColor = ContextCompat.getColor(context, R.color.board_button_color_2)
-                        if (isClicked) {
-                            type = BoardButtonType.X
-                        } else {
-                            type = BoardButtonType.O
-                        }
-                        isClicked = !isClicked
-                        scaleAnimate()
-                    }
-                }
-                val params = btn.layoutParams as FrameLayout.LayoutParams
-                gameBoardView?.setParamsByPosition(params, i, j)
-            }
-
-        }
-    }
-
-    fun refresh() {
-        isClicked = false
-        for (i in gameBoardView?.foregroundArray!!.indices) {
-            for (j in gameBoardView?.foregroundArray!![i].indices) {
-                gameBoardView?.foregroundArray!![i][j]?.removeFromSuperview()
-            }
-            gameBoardView?.foregroundArray!![i].clear()
-        }
-
-        for (i in gameBoardView?.backgroundArray!!.indices) {
-            for (j in gameBoardView?.backgroundArray!!.indices) {
-                gameBoardView?.backgroundArray!![i][j].isEnabled = true
-            }
-        }
-        requestLayout()
     }
 }
