@@ -65,7 +65,7 @@ class PlayFragment : Fragment() {
                         }
                         isClicked = !isClicked
                         scaleAnimate()
-                        playViewModel.win(screen?.gameBoardView?.foregroundArray!!)
+                        playViewModel.win2(screen?.gameBoardView?.foregroundArray!!)
                     }
                 }
                 val params = btn.layoutParams as FrameLayout.LayoutParams

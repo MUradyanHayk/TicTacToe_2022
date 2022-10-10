@@ -20,7 +20,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     init {
     }
 
-    fun win(arr:Array<Array<BoardButton?>>): Boolean {
+    fun win(arr: Array<Array<BoardButton?>>): Boolean {
 // ===============================================================
         var _isWin = false
         for (i in arr.indices) {
@@ -82,6 +82,58 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
         if (_isWin) {
             winTypeLiveData.value = LineDrawType.TYPE_1
+            return true
+        }
+        // ===============================================================
+
+        return false
+    }
+
+
+    fun win2(arr: Array<Array<BoardButton?>>): Boolean {
+// ===============================================================
+        var _isWin = false
+
+        if (arr[0][0]?.type != null && arr[0][0]?.type == arr[0][1]?.type && arr[0][0]?.type == arr[0][2]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_1
+            return true
+        }
+
+        if (arr[1][0]?.type != null && arr[1][0]?.type == arr[1][1]?.type && arr[1][0]?.type == arr[1][2]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_2
+            return true
+        }
+
+        if (arr[2][0]?.type != null && arr[2][0]?.type == arr[2][1]?.type && arr[1][0]?.type == arr[2][2]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_3
+            return true
+        }
+
+        // ===============================================================
+        if (arr[0][0]?.type != null && arr[1][0]?.type == arr[0][0]?.type && arr[0][0]?.type == arr[2][0]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_4
+            return true
+        }
+
+        if (arr[0][1]?.type != null && arr[1][1]?.type == arr[0][1]?.type && arr[0][1]?.type == arr[2][1]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_5
+            return true
+        }
+
+        if (arr[0][2]?.type != null && arr[1][2]?.type == arr[0][2]?.type && arr[0][2]?.type == arr[2][2]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_6
+            return true
+        }
+
+        // ===============================================================
+        if (arr[0][0]?.type != null && arr[1][1]?.type == arr[0][0]?.type && arr[0][0]?.type == arr[2][2]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_7
+            return true
+        }
+
+        // ===============================================================
+        if (arr[2][0]?.type != null && arr[2][0]?.type == arr[1][1]?.type && arr[2][0]?.type == arr[0][2]?.type) {
+            winTypeLiveData.value = LineDrawType.TYPE_8
             return true
         }
         // ===============================================================

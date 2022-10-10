@@ -101,21 +101,46 @@ class GameBoardView @JvmOverloads constructor(
             }
             LineDrawType.TYPE_2 -> {
                 rectF.left = 8f.dp
-                rectF.top = 2 * BoardButton.SIZE / 2f + 2.dp
+                rectF.top = 1 * BoardButton.SIZE + BoardButton.SIZE / 2f + 2.dp
                 rectF.right = width.toFloat() - 8f.dp
                 rectF.bottom = rectF.top
             }
             LineDrawType.TYPE_3 -> {
                 rectF.left = 8f.dp
-                rectF.top = 3 * BoardButton.SIZE / 2f + 2.dp
+                rectF.top = 2 * BoardButton.SIZE + BoardButton.SIZE / 2f + 2.dp
                 rectF.right = width.toFloat() - 8f.dp
                 rectF.bottom = rectF.top
             }
-            LineDrawType.TYPE_4 -> {}
-            LineDrawType.TYPE_5 -> {}
-            LineDrawType.TYPE_6 -> {}
-            LineDrawType.TYPE_7 -> {}
-            LineDrawType.TYPE_8 -> {}
+            LineDrawType.TYPE_4 -> {
+                rectF.left = BoardButton.SIZE / 2f + 1.dp
+                rectF.top = 8f.dp
+                rectF.right =  rectF.left
+                rectF.bottom = height.toFloat() - 8f.dp
+            }
+            LineDrawType.TYPE_5 -> {
+                rectF.left = 1 * BoardButton.SIZE + BoardButton.SIZE / 2f + 1.dp
+                rectF.top = 8f.dp
+                rectF.right =  rectF.left
+                rectF.bottom = height.toFloat() - 8f.dp
+            }
+            LineDrawType.TYPE_6 -> {
+                rectF.left = 2 * BoardButton.SIZE + BoardButton.SIZE / 2f + 1.dp
+                rectF.top = 8f.dp
+                rectF.right =  rectF.left
+                rectF.bottom = height.toFloat() - 8f.dp
+            }
+            LineDrawType.TYPE_7 -> {
+                rectF.left = 8f.dp
+                rectF.top = 8f.dp
+                rectF.right = width.toFloat() - 8f.dp
+                rectF.bottom = height.toFloat() - 8f.dp
+            }
+            LineDrawType.TYPE_8 -> {
+                rectF.left = 8f.dp
+                rectF.top = height.toFloat() - 8f.dp
+                rectF.right = width.toFloat() - 8f.dp
+                rectF.bottom = 8f.dp
+            }
             LineDrawType.NONE -> {}
         }
 
