@@ -15,14 +15,11 @@ class GameBoardView @JvmOverloads constructor(
 
     var backgroundArray = Array(3) { Array(3) { createBoardButton() } }
     var foregroundArray = Array(3) { mutableListOf<BoardButton?>() }
-    var isClicked = false
 
     init {
         setBackgroundColor(ContextCompat.getColor(context, R.color.teal_700))
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         layoutParams = params
-
-        initBackgroundArrayPositions()
     }
 
     private fun createBoardButton(): BoardButton {
@@ -32,7 +29,7 @@ class GameBoardView @JvmOverloads constructor(
         return btn
     }
 
-    private fun createBoardButtonByAnimation(): BoardButton {
+    fun createBoardButtonByAnimation(): BoardButton {
         val btn = BoardButton(context)
         btn.scaleX = 0.7f
         btn.scaleY = 0.7f
@@ -41,52 +38,8 @@ class GameBoardView @JvmOverloads constructor(
         return btn
     }
 
-    private fun initBackgroundArrayPositions() {
-        for (i in backgroundArray.indices) {
-            for (j in backgroundArray[i].indices) {
-                val btn = backgroundArray[i][j]
-                btn.setOnClickListener {
-                    btn.isEnabled = false
-                    createBoardButtonByAnimation().apply {
-                        foregroundArray[i].add(this)
-                        val params = layoutParams as FrameLayout.LayoutParams
-                        setParamsByPosition(params, i, j)
-                        bgColor = ContextCompat.getColor(context, R.color.board_button_color_2)
-                        if (isClicked) {
-                            type = BoardButtonType.X
-                        } else {
-                            type = BoardButtonType.O
-                        }
-                        isClicked = !isClicked
-                        scaleAnimate()
-                    }
-                }
-                val params = btn.layoutParams as FrameLayout.LayoutParams
-                setParamsByPosition(params, i, j)
-            }
-
-        }
-    }
-
     fun setParamsByPosition(params: LayoutParams, i: Int, j: Int) {
         params.topMargin = i * BoardButton.SIZE
         params.leftMargin = j * BoardButton.SIZE
-    }
-
-    fun refresh() {
-        isClicked = false
-        for (i in foregroundArray.indices) {
-            for (j in foregroundArray[i].indices) {
-                foregroundArray[i][j]?.removeFromSuperview()
-            }
-            foregroundArray[i].clear()
-        }
-
-        for (i in backgroundArray.indices) {
-            for (j in backgroundArray.indices) {
-                backgroundArray[i][j].isEnabled = true
-            }
-        }
-        requestLayout()
     }
 }

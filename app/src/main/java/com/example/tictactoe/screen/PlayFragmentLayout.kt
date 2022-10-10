@@ -7,9 +7,11 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.example.tictactoe.R
+import com.example.tictactoe.item.BoardButtonType
 import com.example.tictactoe.ui.GameBoardView
 import com.example.tictactoe.utils.ScreenManager
 import com.example.tictactoe.utils.dp
+import com.example.tictactoe.utils.removeFromSuperview
 import kotlin.math.roundToInt
 
 class PlayFragmentLayout @JvmOverloads constructor(
@@ -17,6 +19,7 @@ class PlayFragmentLayout @JvmOverloads constructor(
 ) : FrameLayout(context, attrs) {
     var gameBoardView: GameBoardView? = null
     var refreshImageView: ImageView? = null
+    var isClicked = false
 
     init {
         setBackgroundColor(ContextCompat.getColor(context, R.color.screen_color))
@@ -24,6 +27,8 @@ class PlayFragmentLayout @JvmOverloads constructor(
         layoutParams = params
         createGameBoardView()
         createRefreshImageView()
+
+        initBackgroundArrayPositions()
     }
 
     private fun createRefreshImageView() {
@@ -47,7 +52,47 @@ class PlayFragmentLayout @JvmOverloads constructor(
         addView(gameBoardView)
     }
 
+    private fun initBackgroundArrayPositions() {
+        for (i in gameBoardView?.backgroundArray!!.indices) {
+            for (j in gameBoardView?.backgroundArray!![i].indices) {
+                val btn = gameBoardView?.backgroundArray!![i][j]
+                btn.setOnClickListener {
+                    btn.isEnabled = false
+                    gameBoardView?.createBoardButtonByAnimation()?.apply {
+                        gameBoardView?.foregroundArray?.get(i)?.add(this)
+                        val params = layoutParams as FrameLayout.LayoutParams
+                        gameBoardView?.setParamsByPosition(params, i, j)
+                        bgColor = ContextCompat.getColor(context, R.color.board_button_color_2)
+                        if (isClicked) {
+                            type = BoardButtonType.X
+                        } else {
+                            type = BoardButtonType.O
+                        }
+                        isClicked = !isClicked
+                        scaleAnimate()
+                    }
+                }
+                val params = btn.layoutParams as FrameLayout.LayoutParams
+                gameBoardView?.setParamsByPosition(params, i, j)
+            }
+
+        }
+    }
+
     fun refresh() {
-        gameBoardView?.refresh()
+        isClicked = false
+        for (i in gameBoardView?.foregroundArray!!.indices) {
+            for (j in gameBoardView?.foregroundArray!![i].indices) {
+                gameBoardView?.foregroundArray!![i][j]?.removeFromSuperview()
+            }
+            gameBoardView?.foregroundArray!![i].clear()
+        }
+
+        for (i in gameBoardView?.backgroundArray!!.indices) {
+            for (j in gameBoardView?.backgroundArray!!.indices) {
+                gameBoardView?.backgroundArray!![i][j].isEnabled = true
+            }
+        }
+        requestLayout()
     }
 }
