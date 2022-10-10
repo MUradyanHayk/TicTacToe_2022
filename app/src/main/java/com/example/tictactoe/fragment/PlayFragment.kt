@@ -46,7 +46,7 @@ class PlayFragment : Fragment() {
                 btn.setOnClickListener {
                     it.isEnabled = false
                     screen?.gameBoardView?.createBoardButtonByAnimation()?.apply {
-                        screen?.gameBoardView?.foregroundArray?.get(i)?.add(this)
+                        screen?.gameBoardView?.foregroundArray!![i][j] = this
                         val params = layoutParams as FrameLayout.LayoutParams
                         screen?.gameBoardView?.setParamsByPosition(params, i, j)
                         bgColor = ContextCompat.getColor(context, R.color.board_button_color_2)
@@ -66,18 +66,27 @@ class PlayFragment : Fragment() {
         }
     }
 
+    fun win() {
+        val arr = screen?.gameBoardView?.foregroundArray
+
+//        if () {
+//        }
+    }
+
     fun refresh() {
         isClicked = false
-        for (i in screen?.gameBoardView?.foregroundArray!!.indices) {
-            for (j in screen?.gameBoardView?.foregroundArray!![i].indices) {
-                screen?.gameBoardView?.foregroundArray!![i][j]?.removeFromSuperview()
+        val fgArr = screen?.gameBoardView?.foregroundArray!!
+        val bgArr = screen?.gameBoardView?.backgroundArray!!
+        for (i in fgArr.indices) {
+            for (j in fgArr[i].indices) {
+                fgArr[i][j]?.removeFromSuperview()
+                fgArr[i][j] = null
             }
-            screen?.gameBoardView?.foregroundArray!![i].clear()
         }
 
-        for (i in screen?.gameBoardView?.backgroundArray!!.indices) {
-            for (j in screen?.gameBoardView?.backgroundArray!!.indices) {
-                screen?.gameBoardView?.backgroundArray!![i][j].isEnabled = true
+        for (i in bgArr.indices) {
+            for (j in bgArr.indices) {
+                bgArr[i][j].isEnabled = true
             }
         }
         screen?.requestLayout()
