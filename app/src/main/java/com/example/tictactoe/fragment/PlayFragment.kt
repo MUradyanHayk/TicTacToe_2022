@@ -44,16 +44,16 @@ class PlayFragment : Fragment() {
             for (j in screen?.gameBoardView?.backgroundArray!![i].indices) {
                 val btn = screen?.gameBoardView?.backgroundArray!![i][j]
                 btn.setOnClickListener {
-                    btn.isEnabled = false
+                    it.isEnabled = false
                     screen?.gameBoardView?.createBoardButtonByAnimation()?.apply {
                         screen?.gameBoardView?.foregroundArray?.get(i)?.add(this)
                         val params = layoutParams as FrameLayout.LayoutParams
                         screen?.gameBoardView?.setParamsByPosition(params, i, j)
                         bgColor = ContextCompat.getColor(context, R.color.board_button_color_2)
-                        if (isClicked) {
-                            type = BoardButtonType.X
+                        type = if (isClicked) {
+                            BoardButtonType.X
                         } else {
-                            type = BoardButtonType.O
+                            BoardButtonType.O
                         }
                         isClicked = !isClicked
                         scaleAnimate()
