@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.tictactoe.R
 import com.example.tictactoe.item.BoardButtonType
 import com.example.tictactoe.screen.PlayFragmentLayout
+import com.example.tictactoe.ui.LineDrawType
 import com.example.tictactoe.utils.removeFromSuperview
 import com.example.tictactoe.viewModel.PlayViewModel
 
@@ -33,10 +34,11 @@ class PlayFragment : Fragment() {
         playViewModel.refreshLiveData.observe(viewLifecycleOwner) {
             refresh()
         }
-        playViewModel.isWinLiveData.observe(viewLifecycleOwner) {
-            if (it) {
+        playViewModel.winTypeLiveData.observe(viewLifecycleOwner) {winType->
+            screen?.gameBoardView?.drawType = winType
+            if (winType != LineDrawType.NONE) {
                 setEnabledButton(false)
-                Toast.makeText(context, "win", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "win", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -74,8 +76,8 @@ class PlayFragment : Fragment() {
 
     fun refresh() {
         isClicked = false
+        screen?.gameBoardView?.drawType = LineDrawType.NONE
         val fgArr = screen?.gameBoardView?.foregroundArray!!
-        val bgArr = screen?.gameBoardView?.backgroundArray!!
         for (i in fgArr.indices) {
             for (j in fgArr[i].indices) {
                 fgArr[i][j]?.removeFromSuperview()
@@ -92,7 +94,7 @@ class PlayFragment : Fragment() {
         val bgArr = screen?.gameBoardView?.backgroundArray!!
         for (i in bgArr.indices) {
             for (j in bgArr.indices) {
-                bgArr[i][j]?.isEnabled = isEnabled
+                bgArr[i][j].isEnabled = isEnabled
             }
         }
     }

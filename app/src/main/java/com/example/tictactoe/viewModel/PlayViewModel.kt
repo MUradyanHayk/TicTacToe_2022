@@ -7,10 +7,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.tictactoe.item.BoardButton
+import com.example.tictactoe.ui.LineDrawType
 
 class PlayViewModel(application: Application) : AndroidViewModel(application) {
     val _refreshLiveData = MutableLiveData<Boolean>()
-    var isWinLiveData = MutableLiveData<Boolean>()
+    var winTypeLiveData = MutableLiveData<LineDrawType>()
     val refreshLiveData: LiveData<Boolean>
         get() {
             return _refreshLiveData
@@ -32,7 +33,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
             if (_isWin) {
-                isWinLiveData.value = true
+                winTypeLiveData.value = LineDrawType.TYPE_1
                 return true
             }
         }
@@ -48,7 +49,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
             if (_isWin) {
-                isWinLiveData.value = true
+                winTypeLiveData.value = LineDrawType.TYPE_1
                 return true
             }
         }
@@ -65,7 +66,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         if (_isWin) {
-            isWinLiveData.value = true
+            winTypeLiveData.value = LineDrawType.TYPE_1
             return true
         }
 
@@ -80,7 +81,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         if (_isWin) {
-            isWinLiveData.value = true
+            winTypeLiveData.value = LineDrawType.TYPE_1
             return true
         }
         // ===============================================================
