@@ -13,8 +13,8 @@ class GameBoardView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
 
-    var backgroundArray = Array(3) { Array(3) { createBoardButton() } }
-    var foregroundArray = Array(3) { Array<BoardButton?>(3){ null} }
+    var backgroundArray: Array<Array<BoardButton>> = Array(3) { Array(3) { createBoardButton() } }
+    var foregroundArray: Array<Array<BoardButton?>> = Array(3) { Array<BoardButton?>(3){ null} }
 
     init {
         setBackgroundColor(ContextCompat.getColor(context, R.color.teal_700))

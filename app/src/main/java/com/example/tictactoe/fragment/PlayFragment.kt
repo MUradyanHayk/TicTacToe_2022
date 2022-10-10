@@ -1,6 +1,5 @@
 package com.example.tictactoe.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +33,12 @@ class PlayFragment : Fragment() {
         playViewModel.refreshLiveData.observe(viewLifecycleOwner) {
             refresh()
         }
+        playViewModel.isWinLiveData.observe(viewLifecycleOwner) {
+            if (it) {
+                setEnabledButton(false)
+                Toast.makeText(context, "win", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         screen?.refreshImageView?.setOnClickListener {
             playViewModel.refresh()
@@ -58,83 +63,13 @@ class PlayFragment : Fragment() {
                         }
                         isClicked = !isClicked
                         scaleAnimate()
-                        if (win()) {
-                            setEnabledButton(false)
-                            Toast.makeText(context, "win", Toast.LENGTH_SHORT).show()
-                        }
+                        playViewModel.win(screen?.gameBoardView?.foregroundArray!!)
                     }
                 }
                 val params = btn.layoutParams as FrameLayout.LayoutParams
                 screen?.gameBoardView?.setParamsByPosition(params, i, j)
             }
-
         }
-    }
-
-    fun win(): Boolean {
-        val arr = screen?.gameBoardView?.foregroundArray!!
-// ===============================================================
-        var isWin = false
-        for (i in arr.indices) {
-            val type = arr[i][0]?.type
-            for (j in arr.indices) {
-                isWin = true
-                if (arr[i][j]?.type != type || arr[i][j] == null) {
-                    isWin = false
-                    break
-                }
-            }
-            if (isWin) {
-                return true
-            }
-        }
-
-        // ===============================================================
-        for (i in arr.indices) {
-            val type = arr[0][i]?.type
-            for (j in arr.indices) {
-                isWin = true
-                if (arr[j][i]?.type != type || arr[j][i] == null) {
-                    isWin = false
-                    break
-                }
-            }
-            if (isWin) {
-                return true
-            }
-        }
-
-        // ===============================================================
-        for (i in arr.indices) {
-            val type = arr[0][0]?.type
-            isWin = true
-            if (arr[i][i]?.type != type || arr[i][i] == null) {
-                isWin = false
-                break
-            }
-        }
-
-        if (isWin) {
-            return true
-        }
-
-        // ===============================================================
-        for (i in arr.indices) {
-            val type = arr[0][arr.size - 1]?.type
-            isWin = true
-            if (arr[i][arr.size - 1 - i]?.type != type || arr[i][arr.size - 1 - i] == null) {
-                isWin = false
-                break
-            }
-        }
-
-        if (isWin) {
-            return true
-        }
-        // ===============================================================
-
-
-        return isWin
     }
 
     fun refresh() {
@@ -161,6 +96,4 @@ class PlayFragment : Fragment() {
             }
         }
     }
-
-
 }
