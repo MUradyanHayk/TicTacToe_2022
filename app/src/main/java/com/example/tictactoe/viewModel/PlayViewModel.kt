@@ -104,7 +104,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             return true
         }
 
-        if (arr[2][0]?.type != null && arr[2][0]?.type == arr[2][1]?.type && arr[1][0]?.type == arr[2][2]?.type) {
+        if (arr[2][0]?.type != null && arr[2][0]?.type == arr[2][1]?.type && arr[2][0]?.type == arr[2][2]?.type) {
             winTypeLiveData.value = LineDrawType.TYPE_3
             return true
         }

@@ -26,7 +26,7 @@ class GameBoardView @JvmOverloads constructor(
             field = value
             drawByType()
         }
-    var lineColor: Int = ContextCompat.getColor(context, R.color.teal_700)
+    var lineColor: Int = ContextCompat.getColor(context, R.color.board_win_line_color)
         get() {
             return field
         }
@@ -49,7 +49,7 @@ class GameBoardView @JvmOverloads constructor(
         layoutParams = params
         _paint.strokeWidth = 6f.dp
         _paint.strokeCap = Paint.Cap.ROUND
-        lineColor = ContextCompat.getColor(context, R.color.board_button_text_color_o)
+        lineColor = ContextCompat.getColor(context, R.color.board_win_line_color)
     }
 
     private fun createBoardButton(): BoardButton {
@@ -137,9 +137,9 @@ class GameBoardView @JvmOverloads constructor(
             }
             LineDrawType.TYPE_8 -> {
                 rectF.left = 8f.dp
-                rectF.top = height.toFloat() - 8f.dp
+                rectF.top = height.toFloat() - 8f.dp + 2.5f.dp
                 rectF.right = width.toFloat() - 8f.dp
-                rectF.bottom = 8f.dp
+                rectF.bottom = 8f.dp + 2.5f.dp
             }
             LineDrawType.NONE -> {}
         }
