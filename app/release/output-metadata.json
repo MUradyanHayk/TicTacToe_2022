@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
-      "versionName": "1.0",
-      "outputFile": "TicTacToe 1.0 (1)_release.apk"
+      "versionCode": 101,
+      "versionName": "1.0.1",
+      "outputFile": "TicTacToe 1.0.1 (101)_release.apk"
     }
   ],
   "elementType": "File"

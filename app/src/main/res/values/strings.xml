@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TicTacToe</string>
     <string name="play_text">Play</string>
+    <string name="admobID" translatable="false">ca-app-pub-3367603831488300~4778197380</string>
 </resources>

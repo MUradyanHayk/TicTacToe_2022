@@ -23,7 +23,7 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3367603831488300~4778197380"
+        app:adUnitId="@string/admobID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
