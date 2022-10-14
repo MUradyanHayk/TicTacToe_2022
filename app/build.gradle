@@ -16,6 +16,43 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("RELEASE_FILES/tic_tac_toe.jks")
+            storePassword 'tictactoe123'
+            keyAlias 'keyAlias'
+            keyPassword 'tictactoe123'
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def appName = "TicTacToe"
+            def buildType = variant.buildType.name // release|debug
+            def versionName = android.defaultConfig.versionName //4.4.3
+            def versionCode = android.defaultConfig.versionCode //184
+
+            def apkName = appName + " " + versionName + " (" + versionCode + ")" + "_" + buildType
+            apkName += ".apk"
+            outputFileName = apkName
+        }
+
+        // remove sample data folder from assets
+        if (variant.buildType.name == 'release') {
+            variant.mergeAssets.doLast {
+                delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['sampleData/']))
+            }
+        }
+
+        // comment to load sample data folder, which uses magic button in conversation screen
+        if (variant.buildType.name == 'debug') {
+            variant.mergeAssets.doLast {
+                delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['sampleData/']))
+            }
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
