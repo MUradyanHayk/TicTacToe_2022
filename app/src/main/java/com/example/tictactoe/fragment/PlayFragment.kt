@@ -5,25 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tictactoe.R
 import com.example.tictactoe.item.BoardButtonType
-import com.example.tictactoe.screen.PlayFragmentLayout
+import com.example.tictactoe.screen.PlayFragmentScreen
 import com.example.tictactoe.ui.LineDrawType
 import com.example.tictactoe.utils.removeFromSuperview
 import com.example.tictactoe.viewModel.PlayViewModel
 
 class PlayFragment : Fragment() {
+    companion object {
+        const val TAG = "PlayFragment"
+    }
     private lateinit var playViewModel: PlayViewModel
-    private var screen: PlayFragmentLayout? = null
+    private var screen: PlayFragmentScreen? = null
     var isClicked = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        screen = PlayFragmentLayout(requireContext())
+        screen = PlayFragmentScreen(requireContext())
         initBackgroundArrayPositions()
         return screen
     }

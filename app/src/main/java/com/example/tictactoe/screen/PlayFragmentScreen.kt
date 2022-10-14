@@ -14,7 +14,7 @@ import com.example.tictactoe.utils.dp
 import com.example.tictactoe.utils.removeFromSuperview
 import kotlin.math.roundToInt
 
-class PlayFragmentLayout @JvmOverloads constructor(
+class PlayFragmentScreen @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
     var gameBoardView: GameBoardView? = null

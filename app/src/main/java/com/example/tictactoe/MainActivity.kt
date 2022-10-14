@@ -3,9 +3,12 @@ package com.example.tictactoe
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.example.tictactoe.fragment.HomeFragment
 import com.example.tictactoe.fragment.PlayFragment
 import com.example.tictactoe.viewModel.MainActivityViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -13,6 +16,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
     private lateinit var mainViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,18 +27,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mainViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
-
-        replaceFragment()
-
-
-
+        replaceFragment(HomeFragment())
     }
 
-    fun replaceFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.container, PlayFragment()).commit()
+    fun replaceFragment(fragment: Fragment, backStack: String? = null) {
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(backStack).commit()
     }
 
-    fun addFragment() {
-
+    fun addFragment(fragment: Fragment, backStack: String? = null) {
+        supportFragmentManager.beginTransaction().add(R.id.container, fragment).addToBackStack(backStack).commit()
     }
 }
