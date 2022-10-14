@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.example.tictactoe.databinding.ActivityMainBinding
 import com.example.tictactoe.fragment.HomeFragment
 import com.example.tictactoe.fragment.PlayFragment
 import com.example.tictactoe.viewModel.MainActivityViewModel
@@ -21,10 +22,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var mainViewModel: MainActivityViewModel
-
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         mainViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
         replaceFragment(HomeFragment())
