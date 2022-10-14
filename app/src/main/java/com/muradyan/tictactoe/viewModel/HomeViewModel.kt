@@ -1,4 +1,4 @@
-package com.example.tictactoe.viewModel
+package com.muradyan.tictactoe.viewModel
 
 import android.app.Application
 import android.os.CountDownTimer
@@ -7,8 +7,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.tictactoe.item.BoardButton
-import com.example.tictactoe.ui.LineDrawType
+import com.muradyan.tictactoe.item.BoardButton
+import com.muradyan.tictactoe.ui.LineDrawType
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     var _playLiveData = MutableLiveData<Unit>()

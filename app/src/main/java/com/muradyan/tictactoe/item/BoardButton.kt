@@ -1,4 +1,4 @@
-package com.example.tictactoe.item
+package com.muradyan.tictactoe.item
 
 import android.animation.Animator
 import android.content.Context
@@ -13,9 +13,9 @@ import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import com.example.tictactoe.R
-import com.example.tictactoe.utils.ScreenManager
-import com.example.tictactoe.utils.dp
+import com.muradyan.tictactoe.R
+import com.muradyan.tictactoe.utils.ScreenManager
+import com.muradyan.tictactoe.utils.dp
 import kotlin.math.roundToInt
 
 

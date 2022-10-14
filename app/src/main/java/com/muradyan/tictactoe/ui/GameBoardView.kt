@@ -1,4 +1,4 @@
-package com.example.tictactoe.ui
+package com.muradyan.tictactoe.ui
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,11 +7,11 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
-import com.example.tictactoe.R
-import com.example.tictactoe.item.BoardButton
-import com.example.tictactoe.item.BoardButtonType
-import com.example.tictactoe.utils.dp
-import com.example.tictactoe.utils.removeFromSuperview
+import com.muradyan.tictactoe.R
+import com.muradyan.tictactoe.item.BoardButton
+import com.muradyan.tictactoe.item.BoardButtonType
+import com.muradyan.tictactoe.utils.dp
+import com.muradyan.tictactoe.utils.removeFromSuperview
 
 class GameBoardView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null

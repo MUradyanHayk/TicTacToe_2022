@@ -1,20 +1,15 @@
-package com.example.tictactoe
+package com.muradyan.tictactoe
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.util.Log
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
-import com.example.tictactoe.databinding.ActivityMainBinding
-import com.example.tictactoe.fragment.HomeFragment
-import com.example.tictactoe.fragment.PlayFragment
-import com.example.tictactoe.viewModel.MainActivityViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.muradyan.tictactoe.databinding.ActivityMainBinding
+import com.muradyan.tictactoe.fragment.HomeFragment
+import com.muradyan.tictactoe.viewModel.MainActivityViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -28,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         mainViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
-
+        initAdMob()
         replaceFragment(HomeFragment())
     }
 
@@ -38,5 +33,28 @@ class MainActivity : AppCompatActivity() {
 
     fun addFragment(fragment: Fragment, backStack: String? = null) {
         supportFragmentManager.beginTransaction().add(R.id.container, fragment).addToBackStack(backStack).commit()
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        binding.adView.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.adView.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.adView.destroy()
+    }
+
+    private fun initAdMob() {
+        MobileAds.initialize(this) { }
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
     }
 }

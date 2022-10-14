@@ -1,4 +1,4 @@
-package com.example.tictactoe.viewModel
+package com.muradyan.tictactoe.viewModel
 
 import android.app.Application
 import android.os.CountDownTimer

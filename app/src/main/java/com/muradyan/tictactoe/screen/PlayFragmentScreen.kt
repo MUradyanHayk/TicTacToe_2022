@@ -1,4 +1,4 @@
-package com.example.tictactoe.screen
+package com.muradyan.tictactoe.screen
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,12 +6,12 @@ import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import com.example.tictactoe.R
-import com.example.tictactoe.item.BoardButtonType
-import com.example.tictactoe.ui.GameBoardView
-import com.example.tictactoe.utils.ScreenManager
-import com.example.tictactoe.utils.dp
-import com.example.tictactoe.utils.removeFromSuperview
+import com.muradyan.tictactoe.R
+import com.muradyan.tictactoe.item.BoardButtonType
+import com.muradyan.tictactoe.ui.GameBoardView
+import com.muradyan.tictactoe.utils.ScreenManager
+import com.muradyan.tictactoe.utils.dp
+import com.muradyan.tictactoe.utils.removeFromSuperview
 import kotlin.math.roundToInt
 
 class PlayFragmentScreen @JvmOverloads constructor(

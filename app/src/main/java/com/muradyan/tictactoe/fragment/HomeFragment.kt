@@ -1,4 +1,4 @@
-package com.example.tictactoe.fragment
+package com.muradyan.tictactoe.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.tictactoe.MainActivity
-import com.example.tictactoe.screen.HomeFragmentScreen
+import com.muradyan.tictactoe.MainActivity
+import com.muradyan.tictactoe.screen.HomeFragmentScreen
 
 class HomeFragment : Fragment() {
     companion object {

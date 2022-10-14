@@ -1,4 +1,4 @@
-package com.example.tictactoe.fragment
+package com.muradyan.tictactoe.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.tictactoe.R
-import com.example.tictactoe.item.BoardButtonType
-import com.example.tictactoe.screen.PlayFragmentScreen
-import com.example.tictactoe.ui.LineDrawType
-import com.example.tictactoe.utils.removeFromSuperview
-import com.example.tictactoe.viewModel.PlayViewModel
+import com.muradyan.tictactoe.R
+import com.muradyan.tictactoe.item.BoardButtonType
+import com.muradyan.tictactoe.screen.PlayFragmentScreen
+import com.muradyan.tictactoe.ui.LineDrawType
+import com.muradyan.tictactoe.utils.removeFromSuperview
+import com.muradyan.tictactoe.viewModel.PlayViewModel
 
 class PlayFragment : Fragment() {
     companion object {

@@ -1,4 +1,4 @@
-package com.example.tictactoe.utils
+package com.muradyan.tictactoe.utils
 
 import android.content.res.Resources
 import android.view.View

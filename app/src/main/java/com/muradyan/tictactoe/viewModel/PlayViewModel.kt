@@ -1,4 +1,4 @@
-package com.example.tictactoe.viewModel
+package com.muradyan.tictactoe.viewModel
 
 import android.app.Application
 import android.os.CountDownTimer
@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.tictactoe.item.BoardButton
-import com.example.tictactoe.ui.LineDrawType
+import com.muradyan.tictactoe.item.BoardButton
+import com.muradyan.tictactoe.ui.LineDrawType
 
 class PlayViewModel(application: Application) : AndroidViewModel(application) {
     val _refreshLiveData = MutableLiveData<Boolean>()
