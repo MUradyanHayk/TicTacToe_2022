@@ -8,17 +8,20 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import com.muradyan.tictactoe.R
+import com.muradyan.tictactoe.item.GameTypesLayout
 
 class HomeFragmentScreen @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
 
     var playWithYourSelfButton: Button? = null
+    var gameTypesLayout: GameTypesLayout? = null
 
     init {
         setBackgroundColor(ContextCompat.getColor(context, R.color.screen_color))
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         layoutParams = params
+        createGameTypesLayout()
         createPlayWithYourSelfButton()
     }
 
@@ -29,5 +32,13 @@ class HomeFragmentScreen @JvmOverloads constructor(
         playWithYourSelfButton?.layoutParams = params
         playWithYourSelfButton?.text = context.getString(R.string.play_text)
         addView(playWithYourSelfButton)
+    }
+
+    private fun createGameTypesLayout() {
+        gameTypesLayout = GameTypesLayout(context)
+        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+        gameTypesLayout?.layoutParams = params
+        addView(gameTypesLayout)
     }
 }
