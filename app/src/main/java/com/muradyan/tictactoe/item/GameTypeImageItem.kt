@@ -26,12 +26,7 @@ class GameTypeImageItem @JvmOverloads constructor(
         private val TEXT_SIZE_O = 48f
     }
 
-    private var rectF: RectF = RectF().apply {
-        left = 2f.dp
-        top = 2f.dp
-        right = SIZE - 2f.dp
-        bottom = SIZE - 2f.dp
-    }
+    private var rectF: RectF = RectF()
 
     private var _paint = Paint(Paint.ANTI_ALIAS_FLAG)
     var bgColor: Int = ContextCompat.getColor(context, R.color.board_button_color)
@@ -54,9 +49,17 @@ class GameTypeImageItem @JvmOverloads constructor(
         _paint.color = bgColor
     }
 
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+        rectF.left = 2f.dp
+        rectF.top = 2f.dp
+        rectF.right = width - 2f.dp
+        rectF.bottom = height - 2f.dp
+    }
+
     override fun onDraw(canvas: Canvas?) {
-        canvas?.drawRoundRect(rectF, 6f.dp, 6f.dp, _paint)
         super.onDraw(canvas)
+        canvas?.drawRoundRect(rectF, 6f.dp, 6f.dp, _paint)
     }
 
 //    override fun dispatchDraw(canvas: Canvas?) {

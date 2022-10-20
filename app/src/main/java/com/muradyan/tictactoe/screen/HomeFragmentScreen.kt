@@ -9,6 +9,8 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import com.muradyan.tictactoe.R
 import com.muradyan.tictactoe.item.GameTypesLayout
+import com.muradyan.tictactoe.utils.dp
+import com.muradyan.tictactoe.utils.setTopPadding
 
 class HomeFragmentScreen @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -36,9 +38,11 @@ class HomeFragmentScreen @JvmOverloads constructor(
 
     private fun createGameTypesLayout() {
         gameTypesLayout = GameTypesLayout(context)
+
         val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
         gameTypesLayout?.layoutParams = params
+        gameTypesLayout?.setTopPadding(32.dp)
         addView(gameTypesLayout)
     }
 }
