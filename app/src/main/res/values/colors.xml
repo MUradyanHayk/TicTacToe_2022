@@ -16,4 +16,6 @@
     <color name="board_button_text_color_x">#FF43A7C1</color>
     <color name="board_button_text_color_o">#FFD65236</color>
     <color name="board_win_line_color">@color/screen_color</color>
+    <color name="play_button_color">@color/board_button_text_color_x</color>
+    <color name="play_button_ripple_color">#E1E9EB</color>
 </resources>

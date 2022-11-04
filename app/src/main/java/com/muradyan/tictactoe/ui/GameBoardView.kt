@@ -9,9 +9,7 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import com.muradyan.tictactoe.R
 import com.muradyan.tictactoe.item.BoardButton
-import com.muradyan.tictactoe.item.BoardButtonType
 import com.muradyan.tictactoe.utils.dp
-import com.muradyan.tictactoe.utils.removeFromSuperview
 
 class GameBoardView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -19,6 +17,7 @@ class GameBoardView @JvmOverloads constructor(
 
     var backgroundArray: Array<Array<BoardButton>> = Array(3) { Array(3) { createBoardButton() } }
     var foregroundArray: Array<Array<BoardButton?>> = Array(3) { Array<BoardButton?>(3) { null } }
+    var notSelectedItemList = createNotSelectedItemList()
     private var _paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     var drawType = LineDrawType.NONE
@@ -44,6 +43,8 @@ class GameBoardView @JvmOverloads constructor(
     }
 
     init {
+
+
         setBackgroundColor(ContextCompat.getColor(context, R.color.teal_700))
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         layoutParams = params
@@ -114,19 +115,19 @@ class GameBoardView @JvmOverloads constructor(
             LineDrawType.TYPE_4 -> {
                 rectF.left = BoardButton.SIZE / 2f + 1.dp
                 rectF.top = 8f.dp
-                rectF.right =  rectF.left
+                rectF.right = rectF.left
                 rectF.bottom = height.toFloat() - 8f.dp
             }
             LineDrawType.TYPE_5 -> {
                 rectF.left = 1 * BoardButton.SIZE + BoardButton.SIZE / 2f + 1.dp
                 rectF.top = 8f.dp
-                rectF.right =  rectF.left
+                rectF.right = rectF.left
                 rectF.bottom = height.toFloat() - 8f.dp
             }
             LineDrawType.TYPE_6 -> {
                 rectF.left = 2 * BoardButton.SIZE + BoardButton.SIZE / 2f + 1.dp
                 rectF.top = 8f.dp
-                rectF.right =  rectF.left
+                rectF.right = rectF.left
                 rectF.bottom = height.toFloat() - 8f.dp
             }
             LineDrawType.TYPE_7 -> {
@@ -146,6 +147,20 @@ class GameBoardView @JvmOverloads constructor(
 
         invalidate()
     }
+
+    fun createNotSelectedItemList():MutableList<GameBoardPoint> {
+        return mutableListOf<GameBoardPoint>(
+        GameBoardPoint(0,0),
+        GameBoardPoint(0,1),
+        GameBoardPoint(0,2),
+        GameBoardPoint(1,0),
+        GameBoardPoint(1,1),
+        GameBoardPoint(1,2),
+        GameBoardPoint(2,0),
+        GameBoardPoint(2,1),
+        GameBoardPoint(2,2),
+        )
+    }
 }
 
 enum class LineDrawType {
@@ -159,3 +174,8 @@ enum class LineDrawType {
     TYPE_8,
     NONE,
 }
+
+data class GameBoardPoint(
+    var i: Int = 0,
+    var j: Int = 0
+)

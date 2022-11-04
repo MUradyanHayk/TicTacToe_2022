@@ -33,6 +33,7 @@ class HomeFragmentScreen @JvmOverloads constructor(
         params.gravity = Gravity.CENTER
         playWithYourSelfButton?.layoutParams = params
         playWithYourSelfButton?.text = context.getString(R.string.play_text)
+        playWithYourSelfButton?.background = ContextCompat.getDrawable(context, R.drawable.play_button_drawable)
         addView(playWithYourSelfButton)
     }
 

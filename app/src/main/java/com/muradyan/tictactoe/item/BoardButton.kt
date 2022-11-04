@@ -92,13 +92,13 @@ class BoardButton @JvmOverloads constructor(
 //        canvas?.drawRoundRect(rectF, 16f, 16f, _paint)
 //    }
 
-    fun scaleAnimate() {
+    fun scaleAnimate(callback: () -> Unit={}) {
         animate().apply {
             scaleX(1.05f)
             scaleY(1.05f)
             duration = 100
             start()
-            setListener(object :Animator.AnimatorListener{
+            setListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(p0: Animator?) {
 
                 }
@@ -106,6 +106,7 @@ class BoardButton @JvmOverloads constructor(
                 override fun onAnimationEnd(p0: Animator?) {
                     scaleX = 1f
                     scaleY = 1f
+                    callback()
                 }
 
                 override fun onAnimationCancel(p0: Animator?) {
